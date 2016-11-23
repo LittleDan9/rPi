@@ -68,7 +68,7 @@
                 dataType:"json",
                 url: '/' + curPin.PIN + '/Toggle'
             }).done(function(data){
-                var rtnString = data + ' ' formatAMPM();
+                var rtnString = data + ' ' + formatAMPM();
                 $('#PinValue').text(data);
             })
         })
