@@ -1,0 +1,14 @@
+{
+  "name": "rPi",
+  "version": "0.0.1",
+  "description": "ReaspberryPi 3 Model B RESTful API for PIN Manipulation",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel R. Little, Little Squared, Inc.",
+  "license": "GNU General Public License Version 3, 29 June 2007",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

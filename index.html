@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RaspberryPI GPIO</title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <H1>Select a GPIO</H2>
+        <select id="ddlPins">
+            <option value="-1">Select a PIN</option>
+        </select>
+        <br/><br/>
+        <input value="Toggle PIN" type="button" id="btnToggle">
+        <br/><br/>
+        <div id="divPin">
+            <div id="divPinName"><strong>Name: </strong><span id="PinName"></span>
+            <div id="divPinNumber"><strong>Number: </strong><span id="PinNumber"></span>
+            <div id="divPinBCM"><strong>Broadcom Pin: </strong><span id="PinBCM"></span>
+            <div id="divPinWpi"><strong>WiringPI Pin: </strong><span id="PinWpi"></span>
+            <div id="divPinValue"><strong>Value: </strong><span id="PinValue"></span>
+        </div>
+
+    </body>
+</html>
+<script type="text/javascript">
+    var curPin = undefined;
+    $.ajax({
+        dataType: "json",
+        url: '/PINs',
+    }).done(function(data){
+        $.each(data, function(i, item){
+            $('#ddlPins').append($('<option></option>')
+                .attr('value', item.PIN)
+                .data(item)
+                .text(item.Name)
+            );
+        }) 
+    })
+
+    $(function(){
+        $('#btnToggle').hide();
+        $('#btnToggle').on('click', function(){
+            $.ajax({
+                dataType:"json",
+                url: '/' + curPin.PIN + '/Toggle'
+            }).done(function(data){
+                $('#PinValue').text(data);
+            })
+        })
+        $('#ddlPins').on('change', function(){
+            if($('#ddlPins').val() != -1){
+                curPin = $('#ddlPins option:selected').data();
+                                
+                $('#PinName').text(curPin.Name);
+                $('#PinNumber').text(curPin.PIN);
+                $('#PinBCM').text(curPin.BCM);
+                $('#PinWpi').text(curPin.wPi);
+                $.ajax({
+                    dataType:"json",
+                    url: '/' + curPin.PIN + '/Value'
+                }).done(function(data){
+                    $('#PinValue').text(data);
+                })
+                $('#btnToggle').show();
+            }else{
+                $('#btnToggle').hide();
+            }
+        })
+    });
+</script>
