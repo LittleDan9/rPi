@@ -8,23 +8,45 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
-        <H1>Select a GPIO</H2>
-        <select id="ddlPins">
-            <option value="-1">Select a PIN</option>
-        </select>
-        <br/><br/>
-        <input value="Toggle PIN" type="button" id="btnToggle" class="hidden">
-        <br/><br/>
-        <div id="divPin" class="hidden">
-            <div id="divPinName"><strong>Name: </strong><span id="PinName"></span>
-            <div id="divPinNumber"><strong>Number: </strong><span id="PinNumber"></span>
-            <div id="divPinBCM"><strong>Broadcom Pin: </strong><span id="PinBCM"></span>
-            <div id="divPinWpi"><strong>WiringPI Pin: </strong><span id="PinWpi"></span>
-            <div id="divPinValue"><strong>Value: </strong><span id="PinValue"></span>
+        <div class="container">
+            <H1>Select a PIN</H1>
+            <div class="form-group">
+            <select id="ddlPins" class="form-control">
+                <option value="-1">Available PINs</option>
+            </select>
+            <br/><br/>
+            <input value="Toggle PIN" type="button" id="btnToggle" class="hidden">
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <table id="tblPinInfo" class="hidden table table-striped">
+                        <tr>
+                            <td>Name</td>
+                            <td><span id="PinName"></td>
+                        </tr>
+                        <tr>
+                            <td>RaspberryPi Pin</td>
+                            <td><span id="PinNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>Broadcom Pin</td>
+                            <td><span id="PinBCM"></td>
+                        </tr>
+                        <tr>
+                            <td>WiringPi Pin</td>
+                            <td><span id="PinWpi"></td>
+                        </tr>
+                        <tr>
+                            <td>Value</td>
+                            <td><span id="PinValue"></td>
+                        </tr>                                                                
+                    </table>  
+                </div>
+            </div>    
         </div>
-
     </body>
 </html>
+
 <script type="text/javascript">
     var curPin = undefined;
     $.ajax({
@@ -41,19 +63,20 @@
     })
 
     $(function(){
-        $('#btnToggle').hide();
         $('#btnToggle').on('click', function(){
             $.ajax({
                 dataType:"json",
                 url: '/' + curPin.PIN + '/Toggle'
             }).done(function(data){
+                var now = Date();
+                var rtnString = date + ' ' + now.today() + ' at ' + now.timeNow()
                 $('#PinValue').text(data);
             })
         })
         $('#ddlPins').on('change', function(){
             if($('#ddlPins').val() != -1){
                 curPin = $('#ddlPins option:selected').data();
-                                
+                $('#tblPinInfo').removeClass('hidden');
                 $('#PinName').text(curPin.Name);
                 $('#PinNumber').text(curPin.PIN);
                 $('#PinBCM').text(curPin.BCM);
@@ -64,9 +87,13 @@
                 }).done(function(data){
                     $('#PinValue').text(data);
                 })
-                $('#btnToggle').show();
+
+                //Allow toggling of the PIN output if it is a GPIO.
+                if(curPin.isGPIO)
+                    $('#btnToggle').removeClass('hidden');
             }else{
-                $('#btnToggle').hide();
+                $('#tblPinInfo').addClass('hidden');
+                $('#btnToggle').addClass('hidden');
             }
         })
     });
