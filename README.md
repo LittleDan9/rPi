@@ -1,5 +1,5 @@
 # rPi 3 Model B
-## PIN/GPIO RESTful Control API (NodeJS)
+### PIN/GPIO RESTful Control API (NodeJS)
 
 This library are my simple implementations of utilizing the PINs on the RaspberryPI 3 Model B. Currently these libraries utilize NodeJS and the GPIO Utility. The GPIO Utility is installed with the standard installation of Raspbian Jessie. 
 
