@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <title>RaspberryPI GPIO</title>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
         <H1>Select a GPIO</H2>
@@ -11,9 +13,9 @@
             <option value="-1">Select a PIN</option>
         </select>
         <br/><br/>
-        <input value="Toggle PIN" type="button" id="btnToggle">
+        <input value="Toggle PIN" type="button" id="btnToggle" class="hidden">
         <br/><br/>
-        <div id="divPin">
+        <div id="divPin" class="hidden">
             <div id="divPinName"><strong>Name: </strong><span id="PinName"></span>
             <div id="divPinNumber"><strong>Number: </strong><span id="PinNumber"></span>
             <div id="divPinBCM"><strong>Broadcom Pin: </strong><span id="PinBCM"></span>
