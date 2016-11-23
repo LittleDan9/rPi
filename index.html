@@ -101,7 +101,7 @@
 
     function formatAMPM() {
         var d = new Date(),
-            seconds = d.getSeconds().toString.length == 1 ? '0' + d.getSeconds() : d.getSeconds(),
+            seconds = d.getSeconds().toString().length == 1 ? '0' + d.getSeconds() : d.getSeconds(),
             minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
             hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
             ampm = d.getHours() >= 12 ? 'PM' : 'AM',
