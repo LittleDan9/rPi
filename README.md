@@ -25,5 +25,5 @@ You can access your Pin Control API on your rPi from a browser at http://[rPi IP
 Obtain your rPi IP Address utilizing the ifconfig command.
 
 ##API Method Calls:
-/[rPi Pin #]/Toggle (http://127.0.0.1/11/Toggle - Toggles GPIO 17 from HIGH to LOW or LOW to HIGH)
-/[rPi Pin #]/Value (http://127.0.0.1/11/Value - Returns the current value for GPIO 17: 1 or 0)
+/[rPi Pin #]/Toggle (http://127.0.0.1/11/Toggle - Toggles GPIO 17 from HIGH to LOW or LOW to HIGH)<br/>
+/[rPi Pin #]/Value (http://127.0.0.1/11/Value - Returns the current value for GPIO 17: 1 or 0)<br/>
