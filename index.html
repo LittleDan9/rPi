@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div id="divPinInfo" class="hidden">
-                    <h3>Last Updated: <span id="lastUpdated"></span><button id="btnRefresh" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button></h3>
+                    <h3>Last Updated: <span id="lastUpdated"></span>&nbsp;<button id="btnRefresh" class="btn btn-default" style="outline:none;"><span class="glyphicon glyphicon-refresh"></span></button></h3>
                     <table id="tblPinInfo" class="table table-striped">
                         <tr>
                             <td>Name</td>
@@ -85,7 +85,7 @@
                 $('#PinValue').text(data === 1 ? 'HIGH' : 'LOW' );
             });
         })
-        
+
         $('#btnRefresh').on('click', function(){
             getPinValue();
         });
