@@ -14,7 +14,12 @@ To confirm the version installed run:
 ```
 node -v
 ```
-Clone this repository to a local folder
+The response should be something like:
+```
+v7.0.0
+```
+
+Clone this Git repository to a local folder
 ```
 git clone https://github.com/LittleDan9/rPi
 ```
