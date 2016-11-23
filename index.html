@@ -52,6 +52,8 @@
 
 <script type="text/javascript">
     var curPin = undefined;
+
+    //On load, populate the list of PINs from the API
     $.ajax({
         dataType: "json",
         url: '/PINs',
@@ -65,6 +67,7 @@
         }) 
     })
 
+    //Local function so that getting the value can be called from multiple places.
     function getPinValue(){
         $('#PinValue').text('');
         $.ajax({
@@ -76,7 +79,9 @@
         });
     }
 
+    //On document ready set the events to the give form events and setup page.
     $(function(){
+        //Toggle PIN value event
         $('#btnToggle').on('click', function(){
             $.ajax({
                 dataType:"json",
@@ -87,10 +92,12 @@
             });
         })
 
+        //Update PIN Value button event.
         $('#btnRefresh').on('click', function(){
             getPinValue();
         });
 
+        //Wiring up event for when selected PIN changes.
         $('#ddlPins').on('change', function(){
             if($('#ddlPins').val() != -1){
                 curPin = $('#ddlPins option:selected').data();
@@ -116,6 +123,7 @@
         })
     });
 
+    //Generic function to spit out the current date and time.
     function formatAMPM() {
         var d = new Date(),
             seconds = d.getSeconds().toString().length == 1 ? '0' + d.getSeconds() : d.getSeconds(),
