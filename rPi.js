@@ -28,11 +28,12 @@ var execSync = require('child_process').execSync;
 const Modes = { Output: 'out', Input: 'in'};
 
 //PIN Object Definition & Prototypes
-function PIN(name, pin, bcm, wpi){
+function PIN(name, pin, bcm, wpi, isGPIO){
 	this.Name = name;
 	this.PIN = pin;
 	this.BCM = bcm;
 	this.wPi = wpi;
+	this.isGPIO = isGPIO === true ? true : false;
 	if(bcm >= 0){
 		this.getValue();
 	}
@@ -131,40 +132,40 @@ const PINs = {
 	PIN4: new PIN('5v', 4),
 	PIN5: new PIN('SCL.1', 5, 3, 9),
 	PIN6: new PIN('Ground', 6),
-	PIN7: new PIN('GPIO 4', 7, 4, 7),
+	PIN7: new PIN('GPIO 4', 7, 4, 7, true),
 	PIN8: new PIN('TxD', 8, 14, 15),
 	PIN9: new PIN('Ground', 9),
 	PIN10: new PIN('RxD', 10, 15, 16),
-	PIN11: new PIN('GPIO 17', 11, 17, 0),
-	PIN12: new PIN('GPIO 18', 12, 18, 1),
-	PIN13: new PIN('GPIO 27', 13, 27, 2),
+	PIN11: new PIN('GPIO 17', 11, 17, 0, true),
+	PIN12: new PIN('GPIO 18', 12, 18, 1, true),
+	PIN13: new PIN('GPIO 27', 13, 27, 2, true),
 	PIN14: new PIN('Ground', 14),
-	PIN15: new PIN('GPIO 22', 15, 22, 3),
-	PIN16: new PIN('GPIO 23', 16, 23, 4),
+	PIN15: new PIN('GPIO 22', 15, 22, 3, true),
+	PIN16: new PIN('GPIO 23', 16, 23, 4, true),
 	PIN17: new PIN('3.3v', 17),
-	PIN18: new PIN('GPIO 24', 18, 24, 5),
+	PIN18: new PIN('GPIO 24', 18, 24, 5, true),
 	PIN19: new PIN('MOSI', 19, 10, 12),
 	PIN20: new PIN('Ground', 20),
 	PIN21: new PIN('MISO', 21, 9, 13),
-	PIN22: new PIN('GPIO 25', 22, 25, 6),
+	PIN22: new PIN('GPIO 25', 22, 25, 6, true),
 	PIN23: new PIN('SCLK', 23, 11, 14),
 	PIN24: new PIN('CE0', 24, 8, 10),
 	PIN25: new PIN('Ground', 25),
 	PIN26: new PIN('CE1', 26, 7, 11),
 	PIN27: new PIN('SDA.0', 27, 0, 30),
 	PIN28: new PIN('SCL.0', 28, 1, 31),
-	PIN29: new PIN('GPIO 5', 29, 5, 21),
+	PIN29: new PIN('GPIO 5', 29, 5, 21, true),
 	PIN30: new PIN('Ground', 30),
-	PIN31: new PIN('GPIO 6', 31, 6, 22),
-	PIN32: new PIN('GPIO 12', 32, 12, 26),
-	PIN33: new PIN('GPIO 13', 33, 13, 23),
+	PIN31: new PIN('GPIO 6', 31, 6, 22, true),
+	PIN32: new PIN('GPIO 12', 32, 12, 26, true),
+	PIN33: new PIN('GPIO 13', 33, 13, 23, true),
 	PIN34: new PIN('Ground', 34),
-	PIN35: new PIN('GPIO 19', 35, 19, 24),
-	PIN36: new PIN('GPIO 16', 36, 16, 27),
-	PIN37: new PIN('GPIO 26', 37, 26, 25),
-	PIN38: new PIN('GPIO 20', 38, 20, 28),
+	PIN35: new PIN('GPIO 19', 35, 19, 24, true),
+	PIN36: new PIN('GPIO 16', 36, 16, 27, true),
+	PIN37: new PIN('GPIO 26', 37, 26, 25, true),
+	PIN38: new PIN('GPIO 20', 38, 20, 28, true),
 	PIN39: new PIN('Ground', 39),
-	PIN40: new PIN('GPIO 21', 40, 21, 29),
+	PIN40: new PIN('GPIO 21', 40, 21, 29, true),
 };
 
 //Export Statement for NodeJS
