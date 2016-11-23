@@ -105,6 +105,8 @@
                 if(curPin.isGPIO){
                     $('#btnToggle').removeClass('hidden');
                     $('#btnRefresh').removeClass('hidden');
+                }else{
+                    $('#btnRefresh').addClass('hidden');
                 }
             }else{
                 $('#divPinInfo').addClass('hidden');
