@@ -69,7 +69,7 @@
                 url: '/' + curPin.PIN + '/Toggle'
             }).done(function(data){
                 var now = Date();
-                var rtnString = date + ' ' + now.today() + ' at ' + now.timeNow()
+                var rtnString = data + ' ' + now.today() + ' at ' + now.timeNow()
                 $('#PinValue').text(data);
             })
         })
