@@ -20,6 +20,10 @@ To run this script clone the repository to a local folder and run:
 node api.js
 ```
 
-You can access your Pin Control API on your rPi from a browser at http:\\[rPi IP Address]:3000
+You can access your Pin Control API on your rPi from a browser at http://[rPi IP Address]:3000
 
 Obtain your rPi IP Address utilizing the ifconfig command.
+
+##API Method Calls:
+/[rPi Pin #]/Toggle (http://127.0.0.1/11/Toggle - Toggles GPIO 17 from HIGH to LOW or LOW to HIGH)
+/[rPi Pin #]/Value (http://127.0.0.1/11/Value - Returns the current value for GPIO 17: 1 or 0)
