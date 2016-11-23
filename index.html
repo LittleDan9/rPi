@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div id="divPinInfo" class="hidden">
-                    <h3>Last Updated: <span id="lastUpdated"></span></h3>
+                    <h3>Last Updated: <span id="lastUpdated"></span><button id="btnRefresh" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button></h3>
                     <table id="tblPinInfo" class="table table-striped">
                         <tr>
                             <td>Name</td>
@@ -68,7 +68,7 @@
     function getPinValue(){
         $.ajax({
             dataType:"json",
-            url: '/' + curPin.PIN + '/Toggle'
+            url: '/' + curPin.PIN + '/Value'
         }).done(function(data){
             $('#lastUpdated').text(formatAMPM());
             $('#PinValue').text(data === 1 ? 'HIGH' : 'LOW' );
@@ -77,8 +77,19 @@
 
     $(function(){
         $('#btnToggle').on('click', function(){
-            getPinValue();
+            $.ajax({
+                dataType:"json",
+                url: '/' + curPin.PIN + '/Toggle'
+            }).done(function(data){
+                $('#lastUpdated').text(formatAMPM());
+                $('#PinValue').text(data === 1 ? 'HIGH' : 'LOW' );
+            });
         })
+        
+        $('#btnRefresh').on('click', function(){
+            getPinValue();
+        });
+
         $('#ddlPins').on('change', function(){
             if($('#ddlPins').val() != -1){
                 curPin = $('#ddlPins option:selected').data();
