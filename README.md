@@ -14,15 +14,24 @@ To confirm the version installed run:
 ```
 node -v
 ```
+Clone this repository to a local folder
+```
+git clone https://github.com/LittleDan9/rPi
+```
+Enter the new directory with the cloned source and install the NodeJS Express web application framework
+```
+cd rPi
+npm install express --save
+```
 
-To run this script clone the repository to a local folder and run:
+Finally run that application.
 ```
 node api.js
 ```
 
-You can access your Pin Control API on your rPi from a browser at http://[rPi IP Address]:3000
+You can access your Pin Control API on your rPi from a browser at http://[rPi IP Address]:3000. There is also a simple html bages that usese jQuery to test the exposted API interface that can be found at the root location of your RaspberryPi.
 
-Obtain your rPi IP Address utilizing the ifconfig command.
+Obtain your rPi IP Address utilizing the ifconfig command on the RaspberryPi.
 
 ##API Method Calls:
 /[rPi Pin #]/Toggle (http://127.0.0.1/11/Toggle - Toggles GPIO 17 from HIGH to LOW or LOW to HIGH)<br/>
