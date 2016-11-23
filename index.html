@@ -19,6 +19,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-4">
+                    <div id="divPinInfo">
+                    <h3>Last Update: <span id="lastUpdated"></span></h3>
                     <table id="tblPinInfo" class="hidden table table-striped">
                         <tr>
                             <td>Name</td>
@@ -41,6 +43,7 @@
                             <td><span id="PinValue"></td>
                         </tr>                                                                
                     </table>  
+                    </div>
                 </div>
             </div>    
         </div>
@@ -62,36 +65,35 @@
         }) 
     })
 
+    function getPinValue(){
+        $.ajax({
+            dataType:"json",
+            url: '/' + curPin.PIN + '/Toggle'
+        }).done(function(data){
+            $('#lastUpdated').text(formatAMPM());
+            $('#PinValue').text(data === 1 ? 'HIGH' : 'LOW' );
+        });
+    }
+
     $(function(){
         $('#btnToggle').on('click', function(){
-            $.ajax({
-                dataType:"json",
-                url: '/' + curPin.PIN + '/Toggle'
-            }).done(function(data){
-                var rtnString = data + ' ' + formatAMPM();
-                $('#PinValue').text(rtnString);
-            })
+            getPinValue();
         })
         $('#ddlPins').on('change', function(){
             if($('#ddlPins').val() != -1){
                 curPin = $('#ddlPins option:selected').data();
-                $('#tblPinInfo').removeClass('hidden');
+                $('#divPinInfo').removeClass('hidden');
                 $('#PinName').text(curPin.Name);
                 $('#PinNumber').text(curPin.PIN);
                 $('#PinBCM').text(curPin.BCM);
                 $('#PinWpi').text(curPin.wPi);
-                $.ajax({
-                    dataType:"json",
-                    url: '/' + curPin.PIN + '/Value'
-                }).done(function(data){
-                    $('#PinValue').text(data);
-                })
+                getPinValue();
 
                 //Allow toggling of the PIN output if it is a GPIO.
                 if(curPin.isGPIO)
                     $('#btnToggle').removeClass('hidden');
             }else{
-                $('#tblPinInfo').addClass('hidden');
+                $('#divPinInfo').addClass('hidden');
                 $('#btnToggle').addClass('hidden');
             }
         })
