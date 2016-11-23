@@ -88,14 +88,13 @@ PIN.prototype.setValue = function(value){
 
 PIN.prototype.getValue = function(){
 
-	if(this.BCM != ''){
+	if(this.BCM != undefined){
 		var myCmd = COMMAND + ' -g ' + GET_METHOD + ' ' + this.BCM;
-		//console.log(myCmd);
 		var result = -1;
-		var value = execSync(myCmd);
-		this.setValue(value.toString().trim());
+		var value = execSync(myCmd).toString().trim();
+		this.setValue(value);
 	}else{
-		this.Value = NaN;
+		this.Value = undefined;
 	}
 	return this.Value;
 }

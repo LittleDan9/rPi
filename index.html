@@ -66,6 +66,7 @@
     })
 
     function getPinValue(){
+        $('#PinValue').text('');
         $.ajax({
             dataType:"json",
             url: '/' + curPin.PIN + '/Value'
@@ -96,8 +97,8 @@
                 $('#divPinInfo').removeClass('hidden');
                 $('#PinName').text(curPin.Name);
                 $('#PinNumber').text(curPin.PIN);
-                $('#PinBCM').text(curPin.BCM);
-                $('#PinWpi').text(curPin.wPi);
+                $('#PinBCM').text(curPin.BCM == undefined ? '' : curPin.BCM);
+                $('#PinWpi').text(curPin.wPi == undefined ? '' : curPin.wPi);
                 getPinValue();
 
                 //Allow toggling of the PIN output if it is a GPIO.
