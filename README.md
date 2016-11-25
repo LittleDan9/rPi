@@ -21,7 +21,7 @@ v7.0.0
 
 Clone this Git repository to a local folder
 ```
-git clone https://github.com/LittleDan9/rPi
+git clone https://github.com/LittleDan9/rPi.git
 ```
 Enter the new directory with the cloned source and install the NodeJS Express web application framework
 ```
