@@ -7,7 +7,7 @@
  * TO DO: Implement additional APIs to the PINs
 /*************************************************************************************************************/
 
-var rPi = require('./rPi.js');
+var rPi = require('./rPiGPIO.js');
 var express = require('express');
 
 var app = express();

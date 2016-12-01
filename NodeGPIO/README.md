@@ -25,7 +25,7 @@ git clone https://github.com/LittleDan9/rPi.git
 ```
 Enter the new directory with the cloned source and install the NodeJS Express web application framework
 ```
-cd rPi
+cd rPi/NodeGPIO
 npm install express --save
 ```
 
